@@ -31,7 +31,7 @@ print(request.json())
 
 # Standard Deviation
 try:
-    request = requests.post(url + "/api/variance", data ={
+    request = requests.post(url + "/api/pstdev", data ={
         "numbers":"1.5,2.5,2.5,2.75,3.25,4.75"})
 except Exception as e:
     print(e) 

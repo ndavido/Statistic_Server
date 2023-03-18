@@ -48,7 +48,7 @@ async def variance(numbers : str = Form()):
             "action": "variance",
             "result": variance}
 
-@app.get("/api/pstdev")
+@app.post("/api/pstdev")
 async def pstdev(numbers : str = Form()):
     if not numbers:
         return {"status": 0,
