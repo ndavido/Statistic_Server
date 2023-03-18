@@ -60,5 +60,5 @@ async def pstdev(numbers : str = Form()):
     pstdev = statistics.pstdev(numbers)
     return {"status": 1,
             "parameter": numbers,
-            "action": "variance",
+            "action": "standard deviation",
             "result": pstdev}
