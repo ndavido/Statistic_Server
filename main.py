@@ -2,7 +2,7 @@ from fastapi import FastAPI, Form
 
 app = FastAPI()
 
-@app.post("/api/factioral")
+@app.post("/api/factorial")
 async def factorial(number : str = Form()):
     number = int(number)
     if number <= 0:
@@ -11,14 +11,10 @@ async def factorial(number : str = Form()):
     result = 1
     for i in range(2, number + 1):
         result *= i
-    try:
-        return {"status": 1,
-                "parameter": number,
-                "action": "factorial",
-                "result": result}
-    except Exception as e:
-        return {"status": 0,
-                "message": e}
+    return {"status": 1,
+            "parameter": number,
+            "action": "factorial",
+            "result": result}
         
 @app.post("/api/median")
 async def median(parameter : str = Form()):
