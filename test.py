@@ -25,6 +25,6 @@ try:
     request = requests.post(url + "/api/variance", data ={
         "numbers":"0.0,0.25,0.25,1.25,1.5,1.75,2.75,3.25"})
 except Exception as e:
-    print(e)
+    print(e) 
 
 print(request.json())
