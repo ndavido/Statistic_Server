@@ -1,3 +1,8 @@
+#
+# Name: Dawid Nalepa
+# ID: 2209302
+#
+
 import requests
 
 url = "http://127.0.0.1:8000"

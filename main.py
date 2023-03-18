@@ -1,3 +1,8 @@
+#
+# Name: Dawid Nalepa
+# ID: 2209302
+#
+
 from fastapi import FastAPI, Form
 import statistics
 
