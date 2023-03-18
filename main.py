@@ -37,8 +37,21 @@ async def median(numbers : str = Form()):
             "result": median}
 
 @app.post("/api/variance")
-async def variance(parameter : str = Form()):
-    return {}
+async def variance(numbers : str = Form()):
+    if not numbers:
+        return {"status": 0,
+                "message": "Input string is empty"}
+    numbers = [float(num) for num in numbers.split(",")]
+    if len(numbers) < 2:
+        return {"status": 0,
+                "message": "Input must contain at least two numbers!"}
+    n = len(numbers)
+    mean = sum(numbers) / n
+    variance = sum((x - mean) ** 2 for x in numbers) / n
+    return {"status": 1,
+            "parameter": numbers,
+            "action": "variance",
+            "result": variance}
 
 @app.get("/api/pstdev")
 async def pstdev(parameter : str = Form()):
