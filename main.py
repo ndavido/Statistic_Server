@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Form
+import statistics
 
 app = FastAPI()
 
@@ -25,12 +26,8 @@ async def median(numbers : str = Form()):
     if len(numbers) < 2:
         return {"status": 0,
                 "message": "Input must contain at least two numbers!"}
-    numbers.sort()
-    length = len(numbers)
-    if length % 2 == 0:
-        median = (numbers[length // 2] + numbers[length // 2 - 1]) / 2
-    else:
-        median = numbers[length // 2]
+   
+    median = statistics.median(numbers)
     return {"status": 1,
             "parameter": numbers,
             "action": "median",
@@ -45,9 +42,7 @@ async def variance(numbers : str = Form()):
     if len(numbers) < 2:
         return {"status": 0,
                 "message": "Input must contain at least two numbers!"}
-    n = len(numbers)
-    mean = sum(numbers) / n
-    variance = sum((x - mean) ** 2 for x in numbers) / n
+    variance = statistics.pvariance(numbers)
     return {"status": 1,
             "parameter": numbers,
             "action": "variance",
@@ -55,4 +50,17 @@ async def variance(numbers : str = Form()):
 
 @app.get("/api/pstdev")
 async def pstdev(parameter : str = Form()):
-    return {}
+    if not numbers:
+        return {"status": 0,
+                "message": "Input string is empty"}
+    numbers = [float(num) for num in numbers.split(",")]
+    if len(numbers) < 2:
+        return {"status": 0,
+                "message": "Input must contain at least two numbers!"}
+    n = len(numbers)
+    mean = sum(numbers) / n
+    variance = sum((x - mean) ** 2 for x in numbers) / n
+    return {"status": 1,
+            "parameter": numbers,
+            "action": "variance",
+            "result": variance}
